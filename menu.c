@@ -1,8 +1,11 @@
-#include <stdio.h>
+#include <ncurses.h>
 
-int main(){
+int main(){	
+  initscr();			
+  printw("Hello World !!!");	
+  refresh();			
+  getch();			
+  endwin();			
 
-    printf("\n ------ SOFTWARE DE CONTABILIDADE E FINANÇAS ------ \n");
- 
-    return 0;
+  return 0;
 }
