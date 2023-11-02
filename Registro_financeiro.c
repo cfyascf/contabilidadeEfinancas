@@ -14,19 +14,19 @@ void cad_fin (int c){
     struct reg regi;
     printf("\n ###########REGISTRO DE OPERAÇÂO FINANCEIRA############## \n");
     regi.regid=c;
-    printf("Escreva o tipo de operação financeira");
+    printf("Escreva o tipo de operação financeira ");
     fflush(stdin);
     gets(regi.tipo);
-    printf("Escreva o para quem foi operação financeira");
+    printf("Escreva o para quem foi operação financeira ");
     fflush(stdin);
     gets(regi.para);
-    printf("Escreva de quem foi a operação financeira");
+    printf("Escreva de quem foi a operação financeira ");
     fflush(stdin);
     gets(regi.de);
-    printf("Escreva a data da operação financeira");
+    printf("Escreva a data da operação financeira ");
     fflush(stdin);
     gets(regi.data);
-    printf("Escreva o valor da operação financeira");
+    printf("Escreva o valor da operação financeira ");
     scanf("%f",&regi.valor);
     // fwrite(&regi,sizeof(struct reg),1,arq);       // não consegui fazer funcionar assim 
     fprintf(arq,"\n Operação Numero:%i \n Tipo de Opereção Financeira: %s \n Para: %s \n De: %s \n Data: %s \n Valor: %.2f",c,regi.tipo,regi.para,regi.de,regi.data,regi.valor);
@@ -36,18 +36,19 @@ void con_fin(int c){
     printf("############################ CONSULTA DE OPERAÇÔES FINANCEIRA ##################");
     char linha[100];
     FILE * arq = fopen("arquivo.txt", "r");
-    printf("\n O total de consutas é %i \n",c);
+    
     while (fgets(linha,sizeof(linha),arq) != NULL){
         printf("%s",linha);
     };
+    printf("\n O total de consutas é %i \n",c);
     fclose(arq);
 };
 int main(){
     setlocale (LC_ALL,"PORTUGUESE");
     int m,c=0;
-    FILE*arq=fopen("arquivo.txt","w");  // pra resetar e a id funcionar tentar arrumar depois
-    fclose(arq);
-    
+    FILE*arq=fopen("arquivo.txt","w");
+    fscanf(arq," %i ",&c);  //não consegui fazer ele ler do aquivo o id então resetar para as id ficar certo não é pq do W
+    // printf("%i",c);
     while(m != 0){
         printf("\n ###############MENU#################### \n Escreva 1 para cadastrar Operações financeiras \n Escreva 2 para consutar Operações financeiras \n Escreva 0 para sair \n");
         scanf("%i",&m);
@@ -60,6 +61,7 @@ int main(){
             return 0;
         };
     };
-
+    // fprintf(arq,"%d",c);
+    fclose(arq);
     return 0;
  }
