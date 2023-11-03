@@ -28,8 +28,7 @@ void cad_fin (int c){
     gets(regi.data);
     printf("Escreva o valor da operação financeira ");
     scanf("%f",&regi.valor);
-    // fwrite(&regi,sizeof(struct reg),1,arq);       // não consegui fazer funcionar assim 
-    fprintf(arq,"\n Operação Numero:%i \n Tipo de Opereção Financeira: %s \n Para: %s \n De: %s \n Data: %s \n Valor: %.2f",c,regi.tipo,regi.para,regi.de,regi.data,regi.valor);
+    fprintf(arq,"\nOperação Numero:%i \n Tipo de Opereção Financeira: %s \n Para: %s \n De: %s \n Data: %s \n Valor: %.2f \n",c,regi.tipo,regi.para,regi.de,regi.data,regi.valor);
     fclose(arq);
 };
 void con_fin(int c){
@@ -45,10 +44,13 @@ void con_fin(int c){
 };
 int main(){
     setlocale (LC_ALL,"PORTUGUESE");
-    int m,c=0;
-    FILE*arq=fopen("arquivo.txt","w");
-    fscanf(arq," %i ",&c);  //não consegui fazer ele ler do aquivo o id então resetar para as id ficar certo não é pq do W
-    // printf("%i",c);
+    int m=-1,c=0;
+    char linha[100];
+    FILE*arq2=fopen("arquivo1.txt","r");
+    fgets(linha,100,arq2);
+    c=atoi(linha);  
+    printf("%i",c);
+    fclose(arq2);            
     while(m != 0){
         printf("\n ###############MENU#################### \n Escreva 1 para cadastrar Operações financeiras \n Escreva 2 para consutar Operações financeiras \n Escreva 0 para sair \n");
         scanf("%i",&m);
@@ -58,10 +60,11 @@ int main(){
         }else if(m == 2){
             con_fin(c);
         }else if(m == 0){
+            FILE*arq2=fopen("arquivo1.txt","w");
+            fprintf(arq2," %i ", c);
+            fclose(arq2);                          
             return 0;
         };
     };
-    // fprintf(arq,"%d",c);
-    fclose(arq);
     return 0;
  }

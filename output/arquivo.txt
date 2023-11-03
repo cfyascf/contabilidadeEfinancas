@@ -1,0 +1,14 @@
+
+Operação Numero:1 
+ Tipo de Opereção Financeira: Deposito 
+ Para: Carlos 
+ De: Empresa Y 
+ Data: 23/23/23 
+ Valor: 23242,00 
+
+Operação Numero:2 
+ Tipo de Opereção Financeira: Deposito 
+ Para: Carlos Filho 
+ De: Empresa Z 
+ Data: 23/12/20 
+ Valor: 896576,00 
