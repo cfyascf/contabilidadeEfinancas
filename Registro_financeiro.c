@@ -35,7 +35,9 @@ void con_fin(int c){
     printf("############################ CONSULTA DE OPERAÇÔES FINANCEIRA ##################");
     char linha[100];
     FILE * arq = fopen("arquivo.txt", "r");
-    
+    if (arq == NULL){
+        FILE * arq = fopen("arquivo.txt","w");  /// caso não exista o txt ele vai criar
+    };
     while (fgets(linha,sizeof(linha),arq) != NULL){
         printf("%s",linha);
     };
@@ -44,15 +46,19 @@ void con_fin(int c){
 };
 int main(){
     setlocale (LC_ALL,"PORTUGUESE");
-    int m=-1,c=0;
+    int m=-1,c;
     char linha[100];
     FILE*arq2=fopen("arquivo1.txt","r");
-    fgets(linha,100,arq2);
-    c=atoi(linha);  
+    if (arq2 == NULL){
+        c=0;
+    }else{
+        fgets(linha,100,arq2);
+        c=atoi(linha);
+    };
     printf("%i",c);
     fclose(arq2);            
     while(m != 0){
-        printf("\n ###############MENU#################### \n Escreva 1 para cadastrar Operações financeiras \n Escreva 2 para consutar Operações financeiras \n Escreva 0 para sair \n");
+        printf("\n ############### MENU #################### \n Escreva 1 para cadastrar Operações financeiras \n Escreva 2 para consutar Operações financeiras \n Escreva 0 para sair \n");
         scanf("%i",&m);
         if (m == 1){
             c++;
