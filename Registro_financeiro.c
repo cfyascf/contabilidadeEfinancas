@@ -35,9 +35,6 @@ void con_fin(int c){
     printf("############################ CONSULTA DE OPERAÇÔES FINANCEIRA ##################");
     char linha[100];
     FILE * arq = fopen("arquivo.txt", "r");
-    if (arq == NULL){
-        FILE * arq = fopen("arquivo.txt","w");  /// caso não exista o txt ele vai criar
-    };
     while (fgets(linha,sizeof(linha),arq) != NULL){
         printf("%s",linha);
     };
