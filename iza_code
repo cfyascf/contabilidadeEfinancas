@@ -1,0 +1,283 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+typedef struct 
+{
+    char nome[50];
+    int idade; 
+    char sexo;
+    long long int cpf;
+    char endereco[50];
+    int rua;
+    char  banco[50];
+    long long int telefone;
+    double renda;
+    char ativo;
+}clientes;
+
+int tam = 10;
+clientes listas [10];
+int quant = 0;
+
+int cadastro(){
+if (quant < tam)
+{
+   clientes c;
+
+  scanf("%*c");
+
+   printf("digite o nome: ");
+   fgets(c.nome, sizeof(c.nome), stdin);
+   c.nome[strcspn(c.nome, "\n")] = 0;
+
+   printf("digite idade  e sexo m ou f :");
+   scanf("%d %c", &c.idade, &c.sexo);
+   getchar();
+
+   printf("digite o cpf :");
+   scanf("%lld", &c.cpf);
+   getchar(); 
+
+   printf("digite o bairro: ");
+   fgets(c.endereco,sizeof(c.endereco), stdin);
+   c.endereco[strcspn(c.endereco, "\n")] = 0;
+
+   printf("numero o da casa: ");
+   scanf("%d", &c.rua );
+   getchar(); 
+
+   printf("digite o banco: ");
+   fgets(c.banco, sizeof(c.banco), stdin);
+   c.endereco[strcspn(c.endereco, "\n")] = 0;   
+
+   printf("numero de telefone: ");
+   scanf("%lld", &c.telefone );
+   getchar(); 
+   
+   printf("renda mensal (liquida): ");
+   scanf("%lf", &c.renda);
+   getchar(); 
+    
+    printf("o cliente e ativo ?, responta somente com S OU N:");
+    scanf("%c", &c.ativo);
+    getchar(); 
+
+   listas [quant] = c;
+   quant ++;
+   return 1; 
+}
+else{
+    printf("ERRO : VETOR CHEIO \n\n");
+}
+
+}
+
+void imprimir(){
+    int i;
+for ( i = 0; i < quant; i++)
+{
+    printf("nome :%s\n", listas[i].nome);
+    printf ("idade :%d \nsexo : %c \n", listas[i].idade, listas[i].sexo);
+    printf("cpf :%lld\n", listas[i].cpf);
+    printf("bairro :%s", listas[i].endereco);
+    printf(", %d\n", listas[i].rua);
+    printf("banco :%s", listas[i].banco);
+    printf("telefone :%lld\n", listas[i].telefone);
+    printf("renda :%.2lf\n", listas[i].renda);
+    printf("ativo: %c", listas[i].ativo);
+}
+
+}
+void salvar(){
+FILE *arq = fopen("clientes.txt", "w");
+int i;
+if(arq){
+for ( i = 0; i < quant; i++)
+{
+    fprintf(arq, "nome :%s /", listas[i].nome);
+    fprintf(arq, "idade :%d /", listas[i].idade);
+    fprintf(arq, "sexo :%c /", listas[i].sexo);
+    fprintf(arq, "cpf :%lld /", listas[i].cpf);
+    fprintf(arq, "endereco :%s", listas[i].endereco);
+    fprintf(arq, ", %d /", listas[i].rua);
+    fprintf(arq, "banco :%s /", listas[i].banco);
+    fprintf(arq, "telefone :%lld /", listas[i].telefone);
+    fprintf(arq, "renda mensal :%.2lf /", listas[i].renda);
+    fprintf(arq,"id do cliente :%d /", quant);
+    fprintf(arq, "ativo: %c\n", listas[i].ativo);
+    fprintf(arq, "_____________________________________________________________________");
+
+}
+fclose(arq);
+}
+else {
+    printf("ERRO: NAO FOI POSSIVEL ABRIR O ARQUIVO");
+}
+}
+typedef struct 
+{
+    char nome[50];
+    int idade;
+    char sexo;
+    long long int cpf;
+    char endereco[50];
+    int rua;
+    char cargo[50];
+    char setor;
+    long long int telefone;
+    double salario;
+    char ativo;
+}funcionarios;
+
+int tama = 10;
+funcionarios lista [10];
+int quanto = 0;
+
+int cadastrof(){
+if (quanto < tama)
+{
+   funcionarios f;
+
+  scanf("%*c");
+
+   printf("digite o nome: ");
+   fgets(f.nome, sizeof(f.nome), stdin);
+   f.nome[strcspn(f.nome, "\n")] = 0;
+
+   printf("digite idade  e sexo m ou f :");
+   scanf("%d %c", &f.idade, &f.sexo);
+   getchar();
+
+   printf("digite o cpf :");
+   scanf("%lld", &f.cpf);
+   getchar(); 
+
+   printf("digite o bairro: ");
+   fgets(f.endereco,sizeof(f.endereco), stdin);
+   f.endereco[strcspn(f.endereco, "\n")] = 0;
+
+   printf("numero da casa: ");
+   scanf("%d", &f.rua );
+
+   printf("digite o cargo: ");
+   fgets(f.cargo, sizeof(f.cargo), stdin);
+   f.cargo[strcspn(f.cargo, "\n")] = 0;   
+
+   printf("setor -a -b -c -d: ");
+   scanf("%c", &f.setor);
+   getchar();   
+
+   printf("numero de telefone: ");
+   scanf("%lld", &f.telefone );
+   getchar(); 
+  
+   printf("salario: ");
+   scanf("%lf", &f.salario);
+   getchar(); 
+   
+   printf("funcionario e ativo ?, responta somente com S OU N: ");
+   scanf("%c", &f.ativo);
+
+   lista [quanto] = f;
+   quanto ++;
+   return 1; 
+}
+else{
+    printf("ERRO : VETOR CHEIO \n\n");
+}
+
+}
+
+void imprimirf(){
+    int i;
+for ( i = 0; i < quanto; i++)
+{
+    printf("nome :%s\n", lista[i].nome);
+    printf ("idade :%d\n sexo : %c \n", lista[i].idade, lista[i].sexo);
+    printf("cpf :%lld\n", lista[i].cpf);
+    printf("endereco :%s", lista[i].endereco);
+    printf(", %d\n", lista[i].rua);
+    printf("cargo :%s", lista[i].cargo);
+    printf("cargo :%c", lista[i].setor);
+    printf("telefone :%lld\n", lista[i].telefone);
+    printf("salario :%.2lf\n", lista[i].salario);
+    printf("ativo: %c", lista[i].ativo);
+
+}
+
+}
+void salvarf(){
+FILE *arqv = fopen("funcionarios.txt", "w");
+int i;
+if(arqv){
+for ( i = 0; i < quanto; i++)
+{
+    fprintf(arqv, "nome :%s/", lista[i].nome);
+    fprintf(arqv, "idade :%d/", lista[i].idade);
+    fprintf(arqv, "sexo :%c/", lista[i].sexo);
+    fprintf(arqv, "cpf :%lld/", lista[i].cpf);
+    fprintf(arqv, "endereco :%s", lista[i].endereco);
+    fprintf(arqv, ", %d/", lista[i].rua);
+    fprintf(arqv, "cargo:%s/", lista[i].cargo);
+    fprintf(arqv, "setor:%c/", lista[i].setor);
+    fprintf(arqv, "telefone :%lld/", lista[i].telefone);
+    fprintf(arqv, "salario :%.2lf/", lista[i].salario);
+    fprintf(arqv,"id do funcionario :%d/", quant);
+    fprintf(arqv, "ativo: %c\n", lista[i].ativo);
+    fprintf(arqv, "_____________________________");
+
+}
+fclose(arqv);
+}
+else {
+    printf("ERRO: NAO FOI POSSIVEL ABRIR O ARQUIVO");
+}
+}
+int main(){
+int op;
+
+do{
+printf("\n1 - cadastrar cliente\n2 - imprimir cliente\n3 - salvar cliente em arquivo\n---------------------------\n4 - cadastrar funcionario\n5 - imprimir funcionario\n6 - salvar funcionario em arquivo\n 0- sair\n");
+scanf("%d", &op);
+switch (op)
+{
+    case 0:
+    printf("tchau...\n\n");
+    break;
+
+    case 1:
+    cadastro();
+    break;
+
+    case 2:
+    imprimir();
+    break;
+
+    case 3:
+    salvar();
+    printf("salvo em arquivos...\n");
+    break;
+
+    case 4:
+    cadastrof();
+    break;
+
+    case 5:
+    imprimirf();
+    break;
+
+    case 6:
+    salvarf();
+    printf("salvo em arquivos...\n");
+    break;
+
+default:
+    printf("opcao invalida. \n\n");
+}
+}while (op != 0);
+
+
+
+
+
+return 0;}
