@@ -28,15 +28,19 @@ void cad_fin (int c){
     gets(regi.data);
     printf("Escreva o valor da operação financeira ");
     scanf("%f",&regi.valor);
-    fprintf(arq,"\nOperação Numero:%i \n Tipo de Opereção Financeira: %s \n Para: %s \n De: %s \n Data: %s \n Valor: %.2f \n",c,regi.tipo,regi.para,regi.de,regi.data,regi.valor);
+    fprintf(arq,"/ %i / %s / %s / %s / %s / %.2f \n",c,regi.tipo,regi.para,regi.de,regi.data,regi.valor);
     fclose(arq);
 };
 void con_fin(int c){
     printf("############################ CONSULTA DE OPERAÇÔES FINANCEIRA ##################");
+    struct reg regi;
+    int j;
     char linha[100];
     FILE * arq = fopen("arquivo.txt", "r");
     while (fgets(linha,sizeof(linha),arq) != NULL){
+        fscanf(arq,"/ %i / %d / %d / %d / %d / %f ",&j,&regi.tipo,&regi.para,&regi.de,&regi.data,&regi.valor);
         printf("%s",linha);
+        printf("/ %i / %d / %d / %d / %d / %f",j,regi.tipo,regi.para,regi.de,regi.data,regi.valor);
     };
     printf("\n O total de consutas é %i \n",c);
     fclose(arq);
