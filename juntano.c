@@ -221,10 +221,9 @@ void cadastroFuncionario(FILE *file_f) {
 
     fclose(file_f);
 }
-
-void cadastroOperacaoFinanceira (FILE * file_r){
+// juan
+int cadastroOperacaoFinanceira (FILE * file_r,int c){
     file_r = fopen("registro_transacao_financeira.txt", "a+");
-    srand(time(NULL));
 
     OperacaoFinanceira r;
 
@@ -233,8 +232,8 @@ void cadastroOperacaoFinanceira (FILE * file_r){
     Sleep(3000);
     system("cls");
 
-    r.id = rand() % 1000;
-
+    r.id = c + 1;
+    c++;
     printf("Tipo de operacao (receita, despesa ou transferencia): ");
     fflush(stdin);
     gets(r.tipo);
@@ -257,7 +256,7 @@ void cadastroOperacaoFinanceira (FILE * file_r){
     system("cls");
     printf("Registrando dados...\n\n");
 
-    fprintf(file_r,"Operação Numero:%i / Tipo: %s / Recebedor: %s / Pagador: %s / Data: %s / Valor: %.2f\n", r.id, r.tipo, r.para, r.de, r.data, r.valor);
+    fprintf(file_r,"\n Operação Numero:%i \n Tipo de Opereção Financeira: %s \n Recebedor: %s \n Pagador: %s \n Data: %s \n Valor: %.2f \n", r.id, r.tipo, r.para, r.de, r.data, r.valor);
 
     Sleep(3000);
 
@@ -267,8 +266,91 @@ void cadastroOperacaoFinanceira (FILE * file_r){
     system("cls");
 
     fclose(file_r);
-};
+    return c;
+}
+void salvar_id(int c){
+            FILE*arq=fopen("registro_transacao_financeira.txt","r+");
+            fprintf(arq,"%i",c);
+            fclose(arq); 
+}
+int desc_id_r(){
+    int c;
+    char linha[100];
+    FILE*arq=fopen("registro_transacao_financeira.txt","r");
+    if (arq == NULL){
+        c=0;
+        printf("naõ acesso");
+    }else{
+        fgets(linha,100,arq);
+        c=atoi(linha);
 
+    };
+    fclose(arq); 
+    return c;
+}
+void relatorioOperacaoFinanceira (FILE * file_r){
+    file_r = fopen("registro_transacao_financeira.txt", "a+");
+    
+    char **linha = NULL;
+    char line[100];
+    int  c_linha=0;
+    int  i;
+
+    while( fgets(line,sizeof(line),file_r) !=NULL){
+        c_linha++;
+        linha = realloc (linha, c_linha * sizeof(char*));
+        linha[c_linha -1]= malloc (strlen(line)+1);
+        strcpy(linha[c_linha-1],line);
+    };
+
+    for (i=0 ; i< c_linha ; i++){
+        if (i != 0){
+            printf("%s",linha[i]);
+        }
+        free(linha[i]);
+    }
+
+    free(linha);
+    fclose(file_r);
+}
+void buscarOperacaoFinanceira(FILE * file_r){
+    file_r = fopen("registro_transacao_financeira.txt", "r");
+
+    char **linha = NULL;
+    char line[100];
+    char id[10];
+    int c_linha=0,i,flag=0;
+
+    printf("Insira o ID da operacao para buscar: ");
+    fflush(stdin);
+    gets(id);
+
+    while( fgets(line,sizeof(line),file_r) !=NULL){
+        c_linha++;
+        linha = realloc (linha, c_linha * sizeof(char*));
+        linha[c_linha -1]= malloc (strlen(line)+1);
+        strcpy(linha[c_linha - 1],line);
+    };
+
+    for ( i=1;i < c_linha; i+=7 ){
+        if (strstr(linha[i],id) != NULL){
+            printf ("%s",linha[i]);
+            printf ("%s",linha[i+1]);
+            printf ("%s",linha[i+2]);
+            printf ("%s",linha[i+3]);
+            printf ("%s",linha[i+4]);
+            printf ("%s",linha[i+5]);
+            flag++;
+        };
+    };
+
+    if (flag==0){
+        printf("ID não encontrado");
+    };
+    fclose(file_r);
+}
+
+// fim juan
 int cmp_function(const void *a, const void *b) {
     return strcmp(*(const char **)a, *(const char **)b);
 }
@@ -335,38 +417,6 @@ void relatorioFuncionario (FILE * file_f){
 
     free(array);
     fclose(file_f);
-};
-
-void relatorioOperacaoFinanceira (FILE * file_r){
-    file_r = fopen("registro_transacao_financeira.txt", "a+");
-    
-    char line[100];
-    char *token;
-    char **array = NULL;
-    int aux = 0;
-
-    while (fgets(line, sizeof(line), file_r)) {
-        int size = strlen(line);
-
-        if (size > 0 && line[size - 1] == '\n') {
-            line[size - 1] = '\0';
-        }
-
-        array = (char **)realloc(array, (aux + 1) * sizeof(char *));
-        array[aux] = strdup(line);
-        aux++;
-        
-    }
-
-    qsort(array, aux, sizeof(char *), cmp_function);
-
-    for (int i = 0; i < aux; i++) {
-        printf("%s\n\n", array[i]);
-        free(array[i]);
-    }
-
-    free(array);
-    fclose(file_r);
 };
 
 void recebeDados(FolhaPagamento *pessoa){
@@ -679,36 +729,6 @@ void buscarFuncionario(FILE * file_f){
     fclose(file_f);
 }
 
-void buscarOperacaoFinanceira(FILE * file_r){
-    file_r = fopen("registro_transacao_financeira.txt", "a+");
-
-    int id;
-    char line[100];
-
-    printf("Insira o ID da operacao para buscar: ");
-    scanf("%d", &id); 
-
-    while (fgets(line, sizeof(line), file_r)) {
-        int size = strlen(line);
-
-        if (size > 0 && line[size - 1] == '\n') {
-            line[size - 1] = '\0';
-        }
-
-        if (strstr(line, id) != NULL) {
-            printf("Operacao encontrada!\n\n");
-            printf("%s\n", line);
-            Sleep(5000);
-            system("cls");
-        }
-        else{
-            printf("Funcionario nao encontrado\n");
-        }
-    }
-
-    fclose(file_r);
-}
-
 int main() {
     FILE *file_c = NULL;
     FILE *file_f = NULL;
@@ -717,6 +737,8 @@ int main() {
     int op = 0;
     int sec_op = 0;
     int aux;
+    int c;
+
 
     while(1){
         main_menu(&op);
@@ -738,7 +760,10 @@ int main() {
                         break;
 
                     case 3:
-                        cadastroOperacaoFinanceira(file_r);
+                        //juan
+                        c = desc_id_r();
+                        c = cadastroOperacaoFinanceira(file_r,c);
+                        salvar_id(c);
                         break;
 
                     case 0:
@@ -779,6 +804,7 @@ int main() {
                         break;
 
                     case 3:
+                        c = desc_id_r();
                         relatorioOperacaoFinanceira(file_r);
                         printf("Insira '0' para sair\n");
                         scanf("%d", &aux);

@@ -10,11 +10,12 @@ struct reg{
     char tipo[50], de[50], para[50] , data[11] ;
     };
 
-void cad_fin (int c){
+int cad_fin (int c){
     FILE * arq = fopen("arquivo.txt","a");
     struct reg regi;
     printf("\n ###########REGISTRO DE OPERAÇÂO FINANCEIRA############## \n");
-    regi.regid=c;
+    regi.regid=c+1;
+    c++;
     printf("Escreva o tipo de operação financeira ");
     fflush(stdin);
     gets(regi.tipo);
@@ -29,27 +30,33 @@ void cad_fin (int c){
     gets(regi.data);
     printf("Escreva o valor da operação financeira ");
     scanf("%f",&regi.valor);
-    fprintf(arq,"Operação Numero:%i \n Tipo de Opereção Financeira: %s \n Recebedor: %s \n Pagador: %s \n Data: %s \n Valor: %.2f \n \n",c,regi.tipo,regi.para,regi.de,regi.data,regi.valor);
+    fprintf(arq,"\n Operação Numero:%i \n Tipo de Opereção Financeira: %s \n Recebedor: %s \n Pagador: %s \n Data: %s \n Valor: %.2f \n",c,regi.tipo,regi.para,regi.de,regi.data,regi.valor);
     fclose(arq);
+    return c;
 };
 void con_fin(int c){
     printf("############################ CONSULTA DE OPERAÇÔES FINANCEIRA ################## \n");
-    char **linha = NULL,contd[100];
-    int c_linha=0,i;
+    char **linha = NULL;
+    char line[100];
+    int  c_linha=0;
+    int  i;
+
     FILE * arq = fopen("arquivo.txt", "r");
-    while( fgets(contd,sizeof(contd),arq) !=NULL){
-    c_linha++;
-    linha = realloc (linha, c_linha * sizeof(char*));
-    linha[c_linha -1]= malloc (strlen(contd)+1);
-    strcpy(linha[c_linha-1],contd);
+    while( fgets(line,sizeof(line),arq) !=NULL){
+        c_linha++;
+        linha = realloc (linha, c_linha * sizeof(char*));
+        linha[c_linha -1]= malloc (strlen(line)+1);
+        strcpy(linha[c_linha-1],line);
     };
     for (i=0 ; i< c_linha ; i++){
         if (i != 0){
             printf("%s",linha[i]);
         }
+        free(linha[i]);
     }
     printf("\n O total de consutas é %i \n",c);
     fclose(arq);
+    free(linha);
 };
 void pesq_id(){
     printf("############################# PESQUISAR POR ID ############################");
@@ -76,10 +83,11 @@ void pesq_id(){
             flag++;
         };
     };
-    fclose(arq);
+
     if (flag==0){
         printf("ID não encontrado");
     };
+    fclose(arq);
 };
 void pesq_tipo(){
     printf("############################# PESQUISAR POR TIPO ############################");
@@ -171,8 +179,10 @@ void pesq_paga(){
         printf("Pagador não encontrado");
     };
 };
-void pont_cha(char **linha, int c_linha){
-    char contd[100];
+void pesq_data(){
+    printf("############################# PESQUISAR POR DATA ############################");
+    char **linha = NULL,contd[100];
+    int c_linha=0,i,flag=0;
     FILE * arq = fopen("arquivo.txt","r");
     while( fgets(contd,sizeof(contd),arq) !=NULL){
         c_linha++;
@@ -180,20 +190,6 @@ void pont_cha(char **linha, int c_linha){
         linha[c_linha -1]= malloc (strlen(contd)+1);
         strcpy(linha[c_linha-1],contd);
     };
-    fclose(arq);
-};
-void pesq_data(){
-    printf("############################# PESQUISAR POR DATA ############################");
-    char **linha = NULL,contd[100];
-    int c_linha=0,i,flag=0;
-    // FILE * arq = fopen("arquivo.txt","r");
-    // while( fgets(contd,sizeof(contd),arq) !=NULL){
-    //     c_linha++;
-    //     linha = realloc (linha, c_linha * sizeof(char*));
-    //     linha[c_linha -1]= malloc (strlen(contd)+1);
-    //     strcpy(linha[c_linha-1],contd);
-    // };
-    pont_cha(**linha,c_linha);
     printf("\n DIGITE A DATA: ");
     fflush(stdin);
     gets(contd);
@@ -208,7 +204,7 @@ void pesq_data(){
             flag++;
         };
     };
-    // fclose(arq);
+    fclose(arq);
     if (flag==0){
         printf("Data não encontrado");
     };
@@ -259,7 +255,7 @@ int desc_id_r(){
 };
 void salvar_id(int c){
             FILE*arq=fopen("arquivo.txt","r+");
-            fprintf(arq," %i ", c);
+            fprintf(arq,"%i", c);
             fclose(arq); 
 };
 int main(){
@@ -270,8 +266,7 @@ int main(){
         printf("\n ############### MENU #################### \n Escreva 1 para cadastrar Operações financeiras \n Escreva 2 para consutar Operações financeiras \n Escreva 3 para pesquisar por ID \n Escreva 4 para pesquisar por tipo \n Escreva 5 para pesquisar por recebedor \n Escreva 6 para pesquisar por pagador \n Escreva 7 para pesquisar por data \n Escreva 8 para pesquisar por valor \n Escreva 0 para sair \n");
         scanf("%i",&m);
         if (m == 1){
-            c++;
-            cad_fin(c);
+            c=cad_fin(c);
         }else if(m == 2){
             con_fin(c);
         }else if(m == 3){

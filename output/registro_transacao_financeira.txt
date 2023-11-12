@@ -1,0 +1,14 @@
+2
+ Operação Numero:1 
+ Tipo de Opereção Financeira: receita 
+ Recebedor: jao 
+ Pagador: carlos 
+ Data: 23/23/23 
+ Valor: 2342.00 
+
+ Operação Numero:2 
+ Tipo de Opereção Financeira: receita 
+ Recebedor: carlos 
+ Pagador: tiago 
+ Data: 23/23/2323 
+ Valor: 2424.00 

@@ -1,43 +1,21 @@
- 6 
-Operação Numero:1 
- Tipo de Opereção Financeira: transferencia 
- Para: joa 
- De: carlos 
- Data: 23/23/2323 
- Valor: 2323,00 
- 
-Operação Numero:2 
- Tipo de Opereção Financeira: Pix 
- Para: carlos 
- De: jao 
- Data: 24/24/2424 
- Valor: 5454,00 
- 
-Operação Numero:3 
- Tipo de Opereção Financeira: Pix 
- Para: jao 
- De: carlos 
- Data: 67/67/6767 
- Valor: 767676,00 
- 
-Operação Numero:4 
- Tipo de Opereção Financeira: saque 
- Recebedor: carlos 
- Pagador: joao 
- Data: 23/23/23 
- Valor: 2323,00 
- 
-Operação Numero:5 
- Tipo de Opereção Financeira: carlos 
- Recebedor: carlos 
- Pagador: carlos 
- Data: carlos 
- Valor: 232323,00 
- 
-Operação Numero:6 
- Tipo de Opereção Financeira: dasdas 
+3
+ Operação Numero:1 
+ Tipo de Opereção Financeira: asdasd 
  Recebedor: asdasd 
  Pagador: asdasd 
- Data: asddasd 
- Valor: 232323,00 
- 
+ Data: asdasd 
+ Valor: 0,00 
+
+ Operação Numero:2 
+ Tipo de Opereção Financeira: asdasd 
+ Recebedor: asdasd 
+ Pagador: asdasd 
+ Data: asdasd 
+ Valor: 0,00 
+
+ Operação Numero:3 
+ Tipo de Opereção Financeira: asda 
+ Recebedor: asdasd 
+ Pagador: asdasd 
+ Data: asdas 
+ Valor: 12323,00 
