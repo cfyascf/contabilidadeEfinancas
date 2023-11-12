@@ -1,3 +1,4 @@
+ 6 
 Operação Numero:1 
  Tipo de Opereção Financeira: transferencia 
  Para: joa 
@@ -18,4 +19,25 @@ Operação Numero:3
  De: carlos 
  Data: 67/67/6767 
  Valor: 767676,00 
+ 
+Operação Numero:4 
+ Tipo de Opereção Financeira: saque 
+ Recebedor: carlos 
+ Pagador: joao 
+ Data: 23/23/23 
+ Valor: 2323,00 
+ 
+Operação Numero:5 
+ Tipo de Opereção Financeira: carlos 
+ Recebedor: carlos 
+ Pagador: carlos 
+ Data: carlos 
+ Valor: 232323,00 
+ 
+Operação Numero:6 
+ Tipo de Opereção Financeira: dasdas 
+ Recebedor: asdasd 
+ Pagador: asdasd 
+ Data: asddasd 
+ Valor: 232323,00 
  
