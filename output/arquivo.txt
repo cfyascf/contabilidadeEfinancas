@@ -1,1 +1,21 @@
- 1 / GAY / GAY / GAY / 23/23/2323 / 232323,00 
+Operação Numero:1 
+ Tipo de Opereção Financeira: transferencia 
+ Para: joa 
+ De: carlos 
+ Data: 23/23/2323 
+ Valor: 2323,00 
+ 
+Operação Numero:2 
+ Tipo de Opereção Financeira: Pix 
+ Para: carlos 
+ De: jao 
+ Data: 24/24/2424 
+ Valor: 5454,00 
+ 
+Operação Numero:3 
+ Tipo de Opereção Financeira: Pix 
+ Para: jao 
+ De: carlos 
+ Data: 67/67/6767 
+ Valor: 767676,00 
+ 
