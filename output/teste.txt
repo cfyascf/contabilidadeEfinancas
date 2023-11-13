@@ -1,0 +1,12 @@
+--- conta 918 ---
+Quem vai pagar: rafa
+Quem vai receber: juan
+Valor a ser pago: 2300.00
+Data de vencimento: 13/11/2023
+Descrição da conta: pix
+--- conta 828 ---
+Quem vai pagar: jao
+Quem vai receber: carlos
+Valor a ser pago: 2323.00
+Data de vencimento: 23/23/2323
+Descrição da conta: pix
