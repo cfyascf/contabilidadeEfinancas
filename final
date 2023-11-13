@@ -156,8 +156,6 @@ void cadastroCliente(FILE *file_c) {
     system("cls");
     printf("Registrando dados...\n\n");
 
-    fprintf(file_c, "%s %s / %d anos / Sexo: %c / CPF: %s / %s %s/ %s / %s / Renda: %.2lf / Ativo? %c\n", c.nome, c.sobrenome, c.idade, c.sexo, c.cpf, c.estado, c.cidade, c.banco, c.telefone, c.renda, c.ativo);
-
     while (fgets(line, sizeof(line), file_c)) {
         int size = strlen(line);
 
@@ -167,15 +165,14 @@ void cadastroCliente(FILE *file_c) {
 
         if (strstr(line, c.cpf) != NULL) {
             printf("Cliente ja cadastrado!\n");
+            return 0;
         }
         else{
             printf("Cliente cadastrado com sucesso!\n");
         }
     }
 
-    Sleep(3000);
-
-    printf("Cliente cadastrado com sucesso!\n");
+    fprintf(file_c, "%s %s / %d anos / Sexo: %c / CPF: %s / %s %s/ %s / %s / Renda: %.2lf / Ativo? %c\n", c.nome, c.sobrenome, c.idade, c.sexo, c.cpf, c.estado, c.cidade, c.banco, c.telefone, c.renda, c.ativo);
 
     Sleep(3000);
     system("cls");
@@ -238,29 +235,29 @@ void cadastroFuncionario(FILE *file_f) {
     system("cls");
     printf("Registrando dados...\n\n");
 
-    fprintf(file_f, "%s %s / %d anos / Sexo: %c / CPF: %s / %s %s / %s / Setor: %c / %s / Salario: %.2lf / Ativo? %c\n", f.nome, f.sobrenome, f.idade, f.sexo, f.cpf, f.estado, f.cidade, f.cargo, f.setor, f.telefone, f.salario, f.ativo);
-
-    while (fgets(line, sizeof(line), file_f)) {
+    while (fgets(line, sizeof(line), file_c)) {
         int size = strlen(line);
 
         if (size > 0 && line[size - 1] == '\n') {
             line[size - 1] = '\0';
         }
 
-        if (strstr(line, f.cpf) != NULL) {
-            printf("Funcionario ja cadastrado!\n");
+        if (strstr(line, c.cpf) != NULL) {
+            printf("Cliente ja cadastrado!\n");
+            return 0;
         }
         else{
-            printf("Funcionario cadastrado com sucesso!\n");
+            printf("Cliente cadastrado com sucesso!\n");
         }
     }
 
-    Sleep(3000);
+    fprintf(file_c, "%s %s / %d anos / Sexo: %c / CPF: %s / %s %s/ %s / %s / Renda: %.2lf / Ativo? %c\n", c.nome, c.sobrenome, c.idade, c.sexo, c.cpf, c.estado, c.cidade, c.banco, c.telefone, c.renda, c.ativo);
 
     Sleep(3000);
     system("cls");
 
-    fclose(file_f);
+    fclose(file_c);
+}
 }
 // juan
 int cadastroOperacaoFinanceira (FILE * file_r,int c){
