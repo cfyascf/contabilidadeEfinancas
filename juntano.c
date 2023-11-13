@@ -231,9 +231,9 @@ int cadastroOperacaoFinanceira (FILE * file_r,int c){
 
     Sleep(3000);
     system("cls");
-
-    r.id = c + 1;
     c++;
+    r.id = c;
+ 
     printf("Tipo de operacao (receita, despesa ou transferencia): ");
     fflush(stdin);
     gets(r.tipo);
@@ -346,7 +346,6 @@ void buscarOperacaoFinanceira(FILE * file_r){
     };
     fclose(file_r);
 }
-
 // fim juan
 int cmp_function(const void *a, const void *b) {
     return strcmp(*(const char **)a, *(const char **)b);
