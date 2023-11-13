@@ -1,0 +1,12 @@
+--- conta 619 ---
+Quem vai pagar: asdasd
+Quem vai receber: asdasd
+Valor a ser pago: 0.00
+Data de vencimento: asdasdasd
+Descrição da conta: asdasd
+--- conta 420 ---
+Quem vai pagar: asdasd
+Quem vai receber: asdasd
+Valor a ser pago: 232323.00
+Data de vencimento: asda
+Descrição da conta: asdasd

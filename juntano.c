@@ -18,6 +18,15 @@ typedef struct {
     char ativo;
 } Cliente;
 
+typedef struct
+{
+    char pagar[50];
+    char receber[50];
+    float valor;
+    char data_vencimento[11];
+    char descricao[100];
+} Reg;
+
 typedef struct {
     char nome[50];
     char sobrenome[50];
@@ -347,6 +356,55 @@ void buscarOperacaoFinanceira(FILE * file_r){
     fclose(file_r);
 }
 // fim juan
+// Rafa
+void register_payment(Reg *r)
+{
+    int i, id, qtd;
+    FILE*file;
+    file = fopen("teste.txt", "a");
+    srand(time(NULL));
+
+    printf("\nDigite a quantidade de contas que voce deseja pagar: ");
+    scanf("%d", &qtd);
+
+    for (i = 0; i < qtd; i++)
+    {
+        id = rand() % 1000;
+        printf("\n --- Conta %i ---\n\n", id);
+
+        printf("\nDigite o nome do pagador: ");
+        scanf("%s", r[i].pagar);
+
+        printf("\nDigite o nome de quem irá receber: ");
+        scanf("%s", r[i].receber);
+
+        printf("\nDigite o valor: ");
+        scanf("%f", &r[i].valor);
+
+        printf("\nDigite a data de vencimento(dd/mm/aaaa): ");
+        scanf("%s", r[i].data_vencimento);
+
+        printf("\nDigite uma descrição da conta: ");
+        scanf("%s", r[i].descricao);
+        fprintf(file, "--- conta %i ---\nQuem vai pagar: %s\nQuem vai receber: %s\nValor a ser pago: %.2f\nData de vencimento: %s\nDescrição da conta: %s\n", id, r[i].pagar, r[i].receber, r[i].valor, r[i].data_vencimento, r[i].descricao);
+        printf("\n --- SEU PAGAMENTO FOI CONCLUÍDO COM SUCESSO! --- \n");
+    }
+    fclose(file);
+}
+
+void show_bills()
+{
+    printf("\n --- Contas a receber --- \n");
+    char line[100];
+    FILE *file;
+    file = fopen("teste.txt", "r");
+    while (fgets(line, sizeof(line), file) != NULL)
+    {
+        printf("%s", line);
+    };
+    fclose(file);
+}
+/// fim rafa
 int cmp_function(const void *a, const void *b) {
     return strcmp(*(const char **)a, *(const char **)b);
 }
@@ -729,7 +787,9 @@ int main() {
     FILE *file_c = NULL;
     FILE *file_f = NULL;
     FILE *file_r = NULL;
-
+   
+    Reg r; 
+    int opcao;
     int op = 0;
     int sec_op = 0;
     int aux;
@@ -910,9 +970,39 @@ int main() {
                 }
                 break;
 
-            // case 5:
-            //     printf("\n -- CONTAS A PAGAR/RECEBER -- \n");
-            //     break;
+           case 5:
+            do
+            {
+                printf("\n -- CONTAS A PAGAR/RECEBER -- \n");
+                printf("[1]. Pagar uma conta\n");
+                printf("[2]. Verificar contas a receber\n");
+                printf("[3]. Sair\n");
+                printf("Escolha uma opcao: ");
+                scanf("%d", &opcao);
+
+                switch (opcao)
+                {
+                case 1:
+                    printf("Opcao escolhida: Pagar uma conta\n");
+                    register_payment(&r);
+                    break;
+
+                case 2:
+                    printf("Opcao escolhida: Verificar contas a receber\n");
+                    show_bills();
+                    break;
+
+                case 3:
+                    printf("Saindo do programa. Ate logo!\n");
+                    break;
+
+                default:
+                    printf("Opcao invalida. Tente novamente.\n");
+                    break;
+                }
+
+            } while (opcao != 3);
+            break;
 
             case 0:
             
