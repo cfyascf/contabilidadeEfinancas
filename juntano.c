@@ -279,7 +279,6 @@ int desc_id_r(){
     FILE*arq=fopen("registro_transacao_financeira.txt","r");
     if (arq == NULL){
         c=0;
-        printf("naõ acesso");
     }else{
         fgets(linha,100,arq);
         c=atoi(linha);
@@ -303,10 +302,8 @@ void relatorioOperacaoFinanceira (FILE * file_r){
         strcpy(linha[c_linha-1],line);
     };
 
-    for (i=0 ; i< c_linha ; i++){
-        if (i != 0){
+    for (i=1 ; i< c_linha ; i++){
             printf("%s",linha[i]);
-        }
         free(linha[i]);
     }
 
@@ -809,8 +806,7 @@ int main() {
                         printf("Insira '0' para sair\n");
                         scanf("%d", &aux);
                         system("cls");
-                        Sleep(10000);
-                        
+                        Sleep(2000);
                         break;
 
                     case 0:
@@ -920,13 +916,17 @@ int main() {
             //     break;
 
             case 0:
+            
                 system("cls");
                 printf("Encerrando programa...\n");
-                Sleep(3000);
+                Sleep(2000);                
                 system("cls");
+                // por algum motivo só com o break não fechar a exe.
+                return 0;
                 break;
-                }
-    }
+        }
+            
+    };
 
     return 0;
 }
