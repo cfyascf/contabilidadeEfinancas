@@ -1108,7 +1108,7 @@ int main() {
                 break;
 
            case 5:
-            do
+            while (1)
             {
                     printf("###############################\n");
                     printf("##                           ##\n");
@@ -1138,14 +1138,15 @@ int main() {
 
                 case 3:
                     printf("Saindo do programa. Ate logo!\n");
+                    Sleep(2000);
+                    sec_op = 0;
                     break;
 
                 default:
                     printf("Opcao invalida. Tente novamente.\n");
                     break;
                 };
-
-            } while (opcao != 3);
+            }
 
             case 0:
             
