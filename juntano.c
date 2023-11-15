@@ -702,7 +702,7 @@ void planoSaude(FolhaPagamento *pessoa){
 
         if(option == 'n'){
             printf("Voce retornara para o menu\n");
-            sleep(5);
+            Sleep(5);
             system("cls");
             return;
         }
@@ -1139,11 +1139,13 @@ int main() {
                 case 3:
                     printf("Saindo do programa. Ate logo!\n");
                     Sleep(2000);
-                    sec_op = 0;
                     break;
 
                 default:
                     printf("Opcao invalida. Tente novamente.\n");
+                    break;
+                };
+                if (opcao == 3){
                     break;
                 };
             }
@@ -1154,7 +1156,6 @@ int main() {
                 printf("Encerrando programa...\n");
                 Sleep(2000);                
                 system("cls");
-                return 0;
                 break;
         }
             
