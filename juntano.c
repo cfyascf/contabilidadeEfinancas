@@ -245,14 +245,11 @@ void cadastroFuncionario(FILE *file_f) {
         if (strstr(line, f.cpf) != NULL) {
             printf("Funcionario ja cadastrado!\n");
             return 0;
-        }
-        else{
-            printf("Funcionario cadastrado com sucesso!\n");
-        }
-    }
+        };
+    };
 
     fprintf(file_f, "%s %s / %d anos / Sexo: %c / CPF: %s / %s %s / %s / Setor: %c / %s / Salario: %.2lf / Ativo? %c\n", f.nome, f.sobrenome, f.idade, f.sexo, f.cpf, f.estado, f.cidade, f.cargo, f.setor, f.telefone, f.salario, f.ativo);
-
+    printf("Funcionario cadastrado com sucesso!\n");
     Sleep(3000);
     system("cls");
 
@@ -733,7 +730,7 @@ void planoSaude(FolhaPagamento *pessoa){
 
     printf("Desconto correspondente ao plano de saude nesse mes: R$%.1f\n", pessoa->descontoPlanoSaude);
 
-    sleep(5);
+    Sleep(5);
     system("cls");
 
 }
